@@ -23,8 +23,11 @@ export function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
                     <Crown className="h-7 w-7 text-brand" />
-                    <span className="text-lg font-bold tracking-tight">
+                    <span className="text-lg font-bold tracking-tight hidden sm:inline">
                         Austin Chess Tournaments
+                    </span>
+                    <span className="text-lg font-bold tracking-tight sm:hidden">
+                        ACT
                     </span>
                 </Link>
 

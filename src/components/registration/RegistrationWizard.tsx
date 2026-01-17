@@ -408,10 +408,11 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                 </div>
                             </div>
 
-                            {/* Search Results Table */}
+                            {/* Search Results - Desktop Table */}
                             {searchResults.length > 0 && (
                                 <div className="border rounded-lg overflow-hidden">
-                                    <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-2 px-4 py-2 bg-muted/50 text-xs font-semibold text-muted-foreground uppercase">
+                                    {/* Desktop header - hidden on mobile */}
+                                    <div className="hidden sm:grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-2 px-4 py-2 bg-muted/50 text-xs font-semibold text-muted-foreground uppercase">
                                         <div>Name</div>
                                         <div>ID</div>
                                         <div>Rating</div>
@@ -423,9 +424,28 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                             <button
                                                 key={member.id}
                                                 onClick={() => handleSelectPlayer(member)}
-                                                className="w-full grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-2 px-4 py-3 text-left hover:bg-brand/10 transition-colors border-t"
+                                                className="w-full text-left hover:bg-brand/10 transition-colors border-t px-4 py-3 sm:grid sm:grid-cols-[2fr_1fr_1fr_1fr_1fr] sm:gap-2"
                                             >
-                                                <div className="font-medium">
+                                                {/* Mobile layout - stacked */}
+                                                <div className="sm:hidden space-y-1">
+                                                    <div className="flex items-center justify-between">
+                                                        <span className="font-medium">
+                                                            {member.title && (
+                                                                <Badge variant="secondary" className="mr-2 text-xs">
+                                                                    {member.title}
+                                                                </Badge>
+                                                            )}
+                                                            {member.firstName} {member.lastName}
+                                                        </span>
+                                                        <span className="font-semibold">{getRating(member) || "Unr."}</span>
+                                                    </div>
+                                                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                                                        <span className="font-mono text-brand">{member.id}</span>
+                                                        <span>{member.stateRep || "—"} • {formatExpiration(member.expirationDate)}</span>
+                                                    </div>
+                                                </div>
+                                                {/* Desktop layout - grid columns */}
+                                                <div className="hidden sm:block font-medium">
                                                     {member.title && (
                                                         <Badge variant="secondary" className="mr-2 text-xs">
                                                             {member.title}
@@ -433,14 +453,14 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                                     )}
                                                     {member.firstName} {member.lastName}
                                                 </div>
-                                                <div className="font-mono text-brand">{member.id}</div>
-                                                <div className="font-semibold">
+                                                <div className="hidden sm:block font-mono text-brand">{member.id}</div>
+                                                <div className="hidden sm:block font-semibold">
                                                     {getRating(member) || "Unr."}
                                                 </div>
-                                                <div className="text-muted-foreground">
+                                                <div className="hidden sm:block text-muted-foreground">
                                                     {member.stateRep || "—"}
                                                 </div>
-                                                <div className="text-sm text-muted-foreground">
+                                                <div className="hidden sm:block text-sm text-muted-foreground">
                                                     {formatExpiration(member.expirationDate)}
                                                 </div>
                                             </button>
@@ -543,8 +563,8 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                                     }))
                                                 }
                                                 className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${data.notificationPref === option.value
-                                                        ? "bg-brand text-brand-foreground border-brand"
-                                                        : "bg-background hover:bg-muted"
+                                                    ? "bg-brand text-brand-foreground border-brand"
+                                                    : "bg-background hover:bg-muted"
                                                     }`}
                                             >
                                                 {option.label}
@@ -573,7 +593,7 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                                 className="mt-1.5"
                                             />
                                         </div>
-                                        <div className="grid grid-cols-[2fr_1fr_1fr] gap-4">
+                                        <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-4">
                                             <div>
                                                 <Label htmlFor="city">City</Label>
                                                 <Input
@@ -661,8 +681,8 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                             key={section.$id}
                                             onClick={() => handleSelectSection(section)}
                                             className={`w-full flex items-center justify-between p-4 rounded-lg border transition-all ${data.sectionId === section.$id
-                                                    ? "border-brand bg-brand/10"
-                                                    : "hover:border-brand/50 hover:bg-muted/50"
+                                                ? "border-brand bg-brand/10"
+                                                : "hover:border-brand/50 hover:bg-muted/50"
                                                 }`}
                                         >
                                             <div className="text-left">
@@ -759,8 +779,8 @@ export function RegistrationWizard({ event, sections, onComplete }: Registration
                                             key={round}
                                             onClick={() => toggleBye(round)}
                                             className={`p-3 rounded-lg border text-center font-medium transition-all ${data.byeRounds.includes(round)
-                                                    ? "bg-brand text-brand-foreground border-brand"
-                                                    : "hover:border-brand/50 hover:bg-muted/50"
+                                                ? "bg-brand text-brand-foreground border-brand"
+                                                : "hover:border-brand/50 hover:bg-muted/50"
                                                 }`}
                                         >
                                             Round {round}

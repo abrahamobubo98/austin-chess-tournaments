@@ -64,50 +64,52 @@ export default function AdminDashboard() {
                 </div>
 
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-                    <TabsList className="flex-wrap h-auto gap-2 bg-transparent p-0">
-                        <TabsTrigger
-                            value="announcements"
-                            className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
-                        >
-                            <Megaphone className="h-4 w-4 mr-2" />
-                            Announcements
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="events"
-                            className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
-                        >
-                            <Calendar className="h-4 w-4 mr-2" />
-                            Events
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="weekly"
-                            className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
-                        >
-                            <CalendarDays className="h-4 w-4 mr-2" />
-                            Weekly
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="resources"
-                            className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
-                        >
-                            <BookOpen className="h-4 w-4 mr-2" />
-                            Resources
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="faqs"
-                            className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
-                        >
-                            <HelpCircle className="h-4 w-4 mr-2" />
-                            FAQs
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="contacts"
-                            className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
-                        >
-                            <Mail className="h-4 w-4 mr-2" />
-                            Contacts
-                        </TabsTrigger>
-                    </TabsList>
+                    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                        <TabsList className="flex-nowrap h-auto gap-2 bg-transparent p-0 w-max sm:w-auto sm:flex-wrap">
+                            <TabsTrigger
+                                value="announcements"
+                                className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
+                            >
+                                <Megaphone className="h-4 w-4 mr-2" />
+                                Announcements
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="events"
+                                className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
+                            >
+                                <Calendar className="h-4 w-4 mr-2" />
+                                Events
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="weekly"
+                                className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
+                            >
+                                <CalendarDays className="h-4 w-4 mr-2" />
+                                Weekly
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="resources"
+                                className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
+                            >
+                                <BookOpen className="h-4 w-4 mr-2" />
+                                Resources
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="faqs"
+                                className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
+                            >
+                                <HelpCircle className="h-4 w-4 mr-2" />
+                                FAQs
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="contacts"
+                                className="data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
+                            >
+                                <Mail className="h-4 w-4 mr-2" />
+                                Contacts
+                            </TabsTrigger>
+                        </TabsList>
+                    </div>
 
                     <TabsContent value="announcements" className="mt-6">
                         <AnnouncementsManager />
